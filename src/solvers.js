@@ -57,34 +57,35 @@ window.findNQueensSolution = function(n) {
 // return the number of nxn chessboards that exist, with n queens placed such that none of them can attack each other
 window.countNQueensSolutions = function(n) {
   var solutionCount = 0;
-  var varient4 = 0;
-  var varient8 = 0;
   var workBoard = new Board({n: n});
 
   var placeQueens = function(workBoard, count) {
-     // NOTE: we are only going to loop through the first row since there must be
-     //       one queen at each row for there to be n Queens on a n x n board
+    for (var i = 0; i < workBoard.attributes[count].length; i++) {
+      workBoard.attributes[count][i] = 1;
+      if (!workBoard.hasAnyQueenConflictsOn(count, i)) {
+        count++;
+        if (count === n) {
+          solutionCount++;
+          count--;
+          workBoard.attributes[count][i] = 0;
+          return;
+        } else {
+          placeQueens(workBoard, count);
+          count --;
+          workBoard.attributes[count][i] = 0;
+        }
+      }
+      workBoard.attributes[count][i] = 0;
+    }
 
-     // base case:
-     // loop through each index of first row, place a queen at each index
-       // check conflict methods for placement of queen
-         // if there is no conflict, increment count and check if there are n queens on the workBoard (count === n)
-           // if there are n queens on the workBoard check varients
-             // if (indexOf(1) on first row) % (indexOf(1) on last row) === 0
-               // this means that this workBoard solution is equal to is 180 degree rotation, increment varient4
-             // otherwise increment varient8
+    return;
+  };
 
-       // recursive case:
-       // call placeQueens(workBoard[count+1], count)
+  if (n === 0) {
+    solutionCount = 1;
+  } else {
+    placeQueens(workBoard, 0);
+  }
 
-  // call placeQueens(workBoard, 0)
-  // solutionCount = (varient8 * 8) + (varient4 * 4)
-
-  // return solutionCount;
-
- };
-
-
-  console.log('Number of solutions for ' + n + ' queens:', solutionCount);
   return solutionCount;
 };
