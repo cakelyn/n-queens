@@ -63,7 +63,7 @@
     },
 
 
-/*
+    /*
          _             _     _
      ___| |_ __ _ _ __| |_  | |__   ___ _ __ ___ _
     / __| __/ _` | '__| __| | '_ \ / _ \ '__/ _ (_)
@@ -142,7 +142,7 @@
         // find indexOf 1
         j = this.rows()[i].indexOf(1);
         // if it exists, run coords of 1 through _getFirstRowColumnIndexForMajorDiagonalOn
-        if (j != -1) {
+        if (j !== -1) {
           diag = this._getFirstRowColumnIndexForMajorDiagonalOn(i, j);
           // if results from ^ and majorDiagonalColumnIndexAtFirstRow
           if (diag === majorDiagonalColumnIndexAtFirstRow) {
@@ -180,7 +180,7 @@
     // test if a specific minor diagonal on this board contains a conflict
     hasMinorDiagonalConflictAt: function(minorDiagonalColumnIndexAtFirstRow) {
       var count = 0;
-      var j, diaj;
+      var j, diag;
 
       for (var i = 0; i < this.rows().length; i++) {
         j = this.rows()[i].indexOf(1);

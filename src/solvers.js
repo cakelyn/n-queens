@@ -16,7 +16,24 @@
 
 
 window.findNRooksSolution = function(n) {
-  var solution = undefined; //fixme
+  //var createNBoard = new Board([]);
+  var solution = [];
+  var counter = 0;
+  // assume n is 8, but can be 1-8, use as a counter for nested arrays
+
+  // while counter != n
+  while (counter !== n) {
+    var row = [];
+    for (var i = 0; i < n; i++) {
+      if (counter === i) {
+        row.push(1);
+      } else {
+        row.push(0);
+      }
+    }
+    solution.push(row);
+    counter++;
+  }
 
   console.log('Single solution for ' + n + ' rooks:', JSON.stringify(solution));
   return solution;
