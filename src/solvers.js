@@ -59,7 +59,6 @@ window.findNQueensSolution = function(n) {
       if (!solution.hasAnyQueenConflictsOn(count, col)) {
         count++;
         if (count === n) {
-          solution = solution;
           found = true;
           return;
         } else {
